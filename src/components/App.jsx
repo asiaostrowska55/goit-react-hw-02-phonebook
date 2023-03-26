@@ -12,6 +12,7 @@ export class App extends Component {
         <ContactForm />
 
         <h2>Contacts</h2>
+        <Filter />
         <ContactList />
       </div>
     );
