@@ -18,3 +18,11 @@ export class App extends Component {
     );
   }
 }
+
+// feedback
+// 1. https://github.com/asiaostrowska55/goit-react-hw-02-feedback
+// 2. https://asiaostrowska55.github.io/goit-react-hw-02-feedback/
+
+// phonebook
+// 1.https://github.com/asiaostrowska55/goit-react-hw-02-phonebook
+// 2.https://asiaostrowska55.github.io/goit-react-hw-02-phonebook/
