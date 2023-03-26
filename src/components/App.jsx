@@ -1,7 +1,19 @@
 import { Component } from 'react';
 import ContactForm from './ContactForm/ContactForm';
-import ContactsList from './ContactsList/ContactsList';
-import ContactsListEl from './ContactslistElement/ContactsListEl';
+import ContactList from './ContactList/ContactList';
+import ListElement from './ListElement/ListElement';
 import Filter from './Filter/Filter';
 
-export class App extends Component {}
+export class App extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Phonebook</h1>
+        <ContactForm />
+
+        <h2>Contacts</h2>
+        <ContactList />
+      </div>
+    );
+  }
+}
