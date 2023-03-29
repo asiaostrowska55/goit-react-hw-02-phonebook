@@ -9,16 +9,33 @@ class ContactForm extends Component {
     number: '',
   };
 
-  handleSubmit = e => {
-    const { name, number } = this.state;
-    e.preventDefault();
-    this.props.onSubmit(name, number);
-    this.setState({ name: '', number: '' });
-  };
-
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const { contacts, addContact } = this.props;
+    const contact = {
+      id: nanoid(),
+      name: this.state.name,
+      number: this.state.number,
+    };
+
+    let isContact;
+    contacts.forEach(newContact => {
+      if (newContact.name.toLowerCase() === contact.name.toLowerCase()) {
+        isContact = true;
+        return;
+      }
+    });
+
+    isContact
+      ? alert(`${contact.name} is already in contacts!`)
+      : addContact(contact);
+
+    this.setState({ name: '', number: '' });
   };
 
   render() {
@@ -61,5 +78,10 @@ class ContactForm extends Component {
     );
   }
 }
+
+ContactForm.propTypes = {
+  number: PropTypes.string,
+  name: PropTypes.string,
+};
 
 export default ContactForm;
