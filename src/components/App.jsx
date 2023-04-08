@@ -11,7 +11,13 @@ export class App extends Component {
     filter: '',
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    const storageContacts = localStorage.getItem(this.STORAGE_KEY);
+
+    if (storageContacts) {
+      this.setState({ contacts: JSON.parse(storageContacts) });
+    }
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.contacts !== this.state.contacts) {
@@ -28,12 +34,6 @@ export class App extends Component {
     }));
   };
 
-  deleteContact = id => {
-    this.setState({
-      contacts: this.state.contacts.filter(contact => contact.id !== id),
-    });
-  };
-
   filter = el => {
     this.setState({
       filter: el.currentTarget.value,
@@ -47,8 +47,13 @@ export class App extends Component {
     );
   };
 
+  deleteContact = id => {
+    this.setState({
+      contacts: this.state.contacts.filter(contact => contact.id !== id),
+    });
+  };
   render() {
-    const filteredContacts = this.filterName();
+    // const filteredContacts = this.filterName();
     return (
       <div>
         <h1>Phonebook</h1>
@@ -59,11 +64,11 @@ export class App extends Component {
 
         <h2>Contacts</h2>
         <Filter onChange={this.filter} filterContacts={this.filterName} />
-        <ContactList
-          contacts={filteredContacts}
-          deleteContact={this.deleteContact}
-        >
-          {/* <ListElement /> */}
+        <ContactList>
+          <ListElement
+            filteredContacts={this.filterName}
+            deleteContact={this.deleteContact}
+          />
         </ContactList>
       </div>
     );

@@ -2,7 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import css from './ContactList.module.css';
 
-export default class ContactList extends Component {
+class ContactList extends Component {
   render() {
     const { children } = this.props;
     return (
@@ -15,3 +15,4 @@ export default class ContactList extends Component {
 ContactList.propTypes = {
   children: PropTypes.node,
 };
+export default ContactList;

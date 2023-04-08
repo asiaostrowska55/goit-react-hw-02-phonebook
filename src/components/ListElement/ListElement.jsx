@@ -2,7 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import css from './ListElement.module.css';
 
-export default class ListElement extends Component {
+class ListElement extends Component {
   render() {
     const { contacts, removeContact } = this.props;
     return contacts.map(({ id, name, number }) => (
@@ -25,3 +25,5 @@ ListElement.propTypes = {
   contacts: PropTypes.array,
   removeContact: PropTypes.func,
 };
+
+export default ListElement;
