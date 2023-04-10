@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
-import ListElement from './ListElement/ListElement';
 import Filter from './Filter/Filter';
 
 export class App extends Component {
@@ -43,7 +42,7 @@ export class App extends Component {
   filterName = () => {
     const { filter, contacts } = this.state;
     return contacts.filter(contact =>
-      contact.name.includes(filter.toLowerCase())
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
 
@@ -53,23 +52,24 @@ export class App extends Component {
     });
   };
   render() {
-    // const filteredContacts = this.filterName();
+    const filteredContacts = this.filterName();
+    const { contacts } = this.state;
+    const value = this.state.filter;
     return (
       <div>
         <h1>Phonebook</h1>
-        <ContactForm
-          contacts={this.state.contacts}
-          addContact={this.addNewContact}
-        />
+        <ContactForm contacts={contacts} addContact={this.addNewContact} />
 
         <h2>Contacts</h2>
-        <Filter onChange={this.filter} filterContacts={this.filterName} />
-        <ContactList>
-          <ListElement
-            filteredContacts={this.filterName}
-            deleteContact={this.deleteContact}
-          />
-        </ContactList>
+        <Filter
+          value={value}
+          onChange={this.filter}
+          filtered={this.filterName}
+        />
+        <ContactList
+          contacts={filteredContacts}
+          removeContact={this.deleteContact}
+        />
       </div>
     );
   }
