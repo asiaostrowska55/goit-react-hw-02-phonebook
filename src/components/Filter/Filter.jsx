@@ -5,19 +5,18 @@ import css from './Filter.module.css';
 
 class Filter extends Component {
   render() {
-    const { value, filtered } = this.props;
-    const id = nanoid();
+    const { filtered } = this.props;
+    const filterId = nanoid();
 
     return (
       <div>
-        <p className={css.filter} htmlFor={id}>
+        <p htmlFor={filterId} className={css.filter}>
           Find contacts by name
         </p>
         <input
           className={css.input}
           type="search"
-          value={value}
-          id={id}
+          id={filterId}
           onChange={filtered}
         ></input>
       </div>
